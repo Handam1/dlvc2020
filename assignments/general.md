@@ -7,7 +7,7 @@ The following applies to all assignments unless stated otherwise in the correspo
 
 Submissions must be handed in fully, not in parts. Every submission must include the code for all parts of that submission, as well as a written report in PDF format (details will be given in the individual assignment instructions).
 
-Assignments are submitted by uploading them to a lecture server that is currently being set up. You will receive login instructions as soon as it is ready.
+Assignments are submitted by uploading them to TUWEL.
 <!-- Assignments are submitted by uploading them to the server your group was assigned to. You should have already received an email with login instructions (basically use `ssh`, on Windows this means installing [putty](https://www.putty.org/)). On your server you will find a `groupX/submissions/assignmentY` folder in your home directory, with `X` being your group ID and `Y` being the assignment ID. To submit assignment `Y`, simply copy your submission into this folder. The folder is shared between all members of group `X` so submission is required/possible only once per group. -->
 
 ## Deadlines

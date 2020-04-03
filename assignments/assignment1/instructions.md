@@ -65,6 +65,49 @@ To test the batch generator make sure the following applies:
 
 Finally we will use accuracy as the performance measure for the linear classifier (and other classifiers in the future). See the lecture slides for how this measure is defined and implement the `Accuracy` class in `test.py` accordingly. This class supports batch-wise updates which will be handy in the future (we already talked about minibatches in the lecture).
 
+## Part 3
+
+In this part we will finish the `LinearClassifier` in `linear.py`. Implement a linear model for classification without a bias vector. The weight matrix is a PyTorch tensor with shape `(num_classes, input_dim)` and should be initialized randomly using `torch.randn`. Make sure to set `requires_grad=True`, this way PyTorch can compute the weight gradient for us. For training we will use the cross-entropy loss `nn.CrossEntropyLoss` and our own implementation of gradient descent. After you have computed the loss call
+
+```python
+self.weights.retain_grad()
+loss.backward()
+```
+
+The second line computes gradients using backpropagation (will be covered in the lecture) while the first ensures that our tensor is included in the computation graph. Now you can access the gradient of the weight matrix using the `.grad` attribute. Implement training with normal gradient descent (momentum=0), with momentum, and with Nesterov momentum depending on the constructor arguments given.
+
+Combine the functionality implemented so far in the script `linear_cats_dogs.py` that does the following, in this order:
+
+1. Load the training, validation, and test sets as individual `PetsDataset`s.
+2. Create a `BatchGenerator` for each one.
+3. Complete the function `train_model`. It trains a linear classifier for 10 epochs and then computes the accuracy on the validation set. You can choose to train with or without Nesterov momentum.
+4. Implement random or grid search (your choice) for finding good values for `lr`and `momentum`. Test at least 3 values for each.
+5. For each `(lr, momentum)` pair train a `LinearClassifier` using `train_model`.
+6. Report the best parameters found and the corresponding validation accuracy. Use `__lt__` or `__gt__` to compare two instances of the `Accuracy` class.
+7. Compute and report the accuracy on the test set with these parameters.
+
+## Report
+
+Write a short report (1 to 2 pages) that answers the following questions:
+
+* What is image classification?
+* What is the purpose of the training, validation, and test sets and why do we need all of them?
+* How do linear classifiers work?
+
+Also include your results obtained from `linear_cats_dogs.py`. Include the validation accuracies for the different `(lr, momentum)` pairs you considered as a table or (better) a plot. Also include the final test accuracy, compare the best validation accuracy and the final test accuracy, and discuss the results.
+
 ## Submission
 
-The dealine for the first assignment is **16.04. at 11pm**. The last part of this assignment will be part 3. With the final instructions you will also receive some information about what should be included in the report as well as more detailed submission instructions. Make sure you've read the general assignment information [here](https://github.com/theitzin/dlvc2020/blob/master/assignments/general.md) before your final submission.
+Submit your assignment until **16.04. at 11pm**. To do so, create a zip archive including the report, the complete `dlvc` folder with your implementations as well as `linear_cats_dogs.py`. More precisely, after extracting the archive I should obtain the following:
+
+    group_x/
+        report.pdf
+        linear_cats_dogs.py
+        dlvc/
+            batches.py
+            ...
+            datasets/
+                ...
+            ...
+
+Submit the zip archive in TUWEL. Make sure you've read the general assignment information [here](https://github.com/theitzin/dlvc2020/blob/master/assignments/general.md) before your final submission.
