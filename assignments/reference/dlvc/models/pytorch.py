@@ -2,6 +2,7 @@
 from ..model import Model
 
 import numpy as np
+import torch
 import torch.nn as nn
 
 class CnnClassifier(Model):
@@ -10,7 +11,7 @@ class CnnClassifier(Model):
     The network must expect inputs of shape NCHW with N being a variable batch size,
     C being the number of (image) channels, H being the (image) height, and W being the (image) width.
     The network must end with a linear layer with num_classes units (no softmax).
-    The cross-entropy loss and SGD are used for training.
+    The cross-entropy loss (torch.nn.CrossEntropyLoss) and SGD (torch.optim.SGD) are used for training.
     '''
 
     def __init__(self, net: nn.Module, input_shape: tuple, num_classes: int, lr: float, wd: float):
